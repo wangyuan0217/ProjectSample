@@ -1,0 +1,62 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.variable.VERSION_COMPILE
+    buildToolsVersion rootProject.ext.variable.VERSION_BUILD_TOOL
+    defaultConfig {
+        minSdkVersion rootProject.ext.variable.VERSION_MIN_SDK
+        targetSdkVersion rootProject.ext.variable.VERSION_TARGET_SDK
+        versionCode 1
+        versionName "1.0"
+
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //project dependencies
+    api project(':business-resource')
+    api project(':business-model')
+    api project(':business-config')
+
+
+    //support dependencies
+    implementation rootProject.ext.library["appcompat"]
+
+
+    //etc dependencies
+    api rootProject.ext.library["butterknife"]
+    //apt在需要使用的module添加
+    //annotationProcessor rootProject.ext.library["butterknife-compiler"]
+    api rootProject.ext.library["arouter-api"]
+    //apt在需要使用的module添加
+    //annotationProcessor rootProject.ext.library["arouter-compiler"]
+
+    //http
+    api rootProject.ext.library["gson"]
+    api rootProject.ext.library["rxjava"]
+    api rootProject.ext.library["rxandroid"]
+    api rootProject.ext.library["retrofit2"]
+    api rootProject.ext.library["okhttp3"]
+    api rootProject.ext.library["converter-gson"]
+    api rootProject.ext.library["adapter-rxjava"]
+    api rootProject.ext.library["PersistentCookieJar"]
+    api rootProject.ext.library["logging-interceptor"]
+
+    //
+    api rootProject.ext.library["klog"]
+}

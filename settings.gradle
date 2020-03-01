@@ -1,0 +1,2 @@
+include ':app', ':business-common', ':business-resource', ':module-main', ':module-mine', ':business-config', ':business-model'
+rootProject.name='ProjectSample'

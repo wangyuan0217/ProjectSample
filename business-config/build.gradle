@@ -1,0 +1,33 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.variable.VERSION_COMPILE
+    buildToolsVersion rootProject.ext.variable.VERSION_BUILD_TOOL
+    defaultConfig {
+        minSdkVersion rootProject.ext.variable.VERSION_MIN_SDK
+        targetSdkVersion rootProject.ext.variable.VERSION_TARGET_SDK
+        versionCode 1
+        versionName "1.0"
+
+        consumerProguardFiles 'consumer-rules.pro'
+
+
+        //BuildConfig
+        rootProject.ext.variable.each {
+            item -> buildConfigField "String", item.key, "\"" + item.value + "\""
+        }
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+}

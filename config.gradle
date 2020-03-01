@@ -1,0 +1,118 @@
+project.ext {
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    //上线修改///////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    def releaseType = 0  //类型（0正式环境,1测试环境,2开发环境,10正式环境且显示Log）
+    def versionCode = 1
+    def versionName = "1.0"
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    def releaseTypeDesc = ""
+    def logEnable = false
+    def httpType = 0  //0正式环境,1测试环境,2开发环境
+
+    switch (releaseType) {
+        case 0://正式环境
+            releaseTypeDesc = "release"
+            logEnable = false
+            httpType = 0
+            break
+        case 10://正式环境且显示Log
+            releaseTypeDesc = "release"
+            logEnable = true
+            httpType = 0
+            break
+        case 1://测试环境
+            releaseTypeDesc = "test"
+            logEnable = true
+            httpType = 1
+            break
+        case 2://开发环境
+            releaseTypeDesc = "dev"
+            logEnable = true
+            httpType = 2
+            break
+        default://正式环境
+            releaseTypeDesc = "release"
+            logEnable = false
+            httpType = 0
+            break
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////// //////////////////////////////////////////////////////////////
+
+    def URL_HOST
+    def PRE_H5
+    //etc...
+
+    switch (httpType) {
+        case 0://正式环境
+            URL_HOST = ""
+            PRE_H5 = ""
+            break
+        case 1://测试环境
+            URL_HOST = ""
+            PRE_H5 = ""
+            break
+        case 2://开发环境
+            URL_HOST = ""
+            PRE_H5 = ""
+            break
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    ///第三方key等///////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////// //////////////////////////////////////////////////////////////
+    def BUGLY_APPID
+    def WECHAT_ID
+    //etc...
+    switch (httpType) {
+        case 0://正式环境
+            BUGLY_APPID = ""
+            WECHAT_ID = ""
+            break
+        default:
+            BUGLY_APPID = ""
+            WECHAT_ID = ""
+            break
+    }
+
+    variable = [
+            //项目编译相关配置
+            RELEASE_TYPE        : releaseType,
+            HTTP_TYPE           : httpType,
+            VERSION_COMPILE     : 29,
+            VERSION_BUILD_TOOL  : "29.0.3",
+            VERSION_MIN_SDK     : 21,
+            VERSION_TARGET_SDK  : 29,
+
+            //app 相关信息
+            PACKAGE_VCODE       : versionCode,
+            PACKAGE_VNAME       : versionName,
+            PACKAGE_ID          : "com.trump.sample",
+            PACKAGE_RELEASE_DESC: releaseTypeDesc,
+
+
+            //http  h5 等配置
+            URL_API_HOST        : URL_HOST,
+            URL_PRE_H5          : PRE_H5,
+
+
+            //第三方配置信息等
+            "BUGLY_APPID"       : BUGLY_APPID,
+            "WECHAT_APPID"      : WECHAT_ID,
+
+
+            //log打印
+            LOG_ENABLE          : logEnable,
+
+
+            //DateBase相关
+            DB_VERSION          : 1,
+            DB_NAME             : "TRUMP",
+    ]
+
+}

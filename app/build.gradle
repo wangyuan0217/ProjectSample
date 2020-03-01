@@ -1,0 +1,85 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.variable.VERSION_COMPILE
+    buildToolsVersion rootProject.ext.variable.VERSION_BUILD_TOOL
+    defaultConfig {
+        applicationId rootProject.ext.variable.PACKAGE_ID
+        minSdkVersion rootProject.ext.variable.VERSION_MIN_SDK
+        targetSdkVersion rootProject.ext.variable.VERSION_TARGET_SDK
+        versionCode rootProject.ext.variable.PACKAGE_VCODE
+        versionName rootProject.ext.variable.PACKAGE_VNAME
+
+//        multiDexEnabled true
+//        vectorDrawables.useSupportLibrary = true
+//        flavorDimensions "versionCode"
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+
+    signingConfigs {
+        release {
+            storeFile file("../trump.jks")
+            storePassword "123456"
+            keyAlias 'trump'
+            keyPassword "123456"
+        }
+    }
+
+    buildTypes {
+        debug {
+//            修改包名时需要
+//            applicationIdSuffix ".debug"
+            minifyEnabled false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+//            ndk {
+//                abiFilters "armeabi", "armeabi-v7a", "x86"
+//            }
+        }
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    //版本输出包名自动追加版本号和版本名称
+    applicationVariants.all {
+        variant ->
+            variant.outputs.all {
+                //服务地址类型
+                def releaseTypeDesc = rootProject.ext.variable.PACKAGE_RELEASE_DESC
+                if (buildType.name == 'release') {
+                    outputFileName = "App_" + defaultConfig.versionName + "_" + buildType.name + ".apk"
+                } else {
+                    outputFileName = "App_" + defaultConfig.versionName + "_" + new Date().format("yyyy-MM-dd_HHmmss") + "_" + buildType.name + "_" + releaseTypeDesc + ".apk"
+                }
+            }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //project dependencies
+    implementation project(':business-common')
+    implementation project(':module-main')
+    implementation project(':module-mine')
+
+    //support dependencies
+    implementation rootProject.ext.library["appcompat"]
+    implementation rootProject.ext.library["constraintlayout"]
+
+    //etc dependencies
+
+}
