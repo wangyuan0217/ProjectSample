@@ -43,7 +43,7 @@ public enum OKHttpFactory {
         builder.addInterceptor(buildHeaderInterceptor());
 
         //cache
-        File fileCache = BaseApplication.getInstance().getCacheDir();
+        File fileCache = BaseApplication.getContext().getCacheDir();
         Cache cache = new Cache(fileCache, HttpConfigConstant.CACHE_SIZE);
         builder.cache(cache);
 
@@ -56,7 +56,7 @@ public enum OKHttpFactory {
         builder.hostnameVerifier((hostname, session) -> true);
 
         //add cookie
-        SharedPrefsCookiePersistor persistor = new SharedPrefsCookiePersistor(BaseApplication.getInstance());
+        SharedPrefsCookiePersistor persistor = new SharedPrefsCookiePersistor(BaseApplication.getContext());
         ClearableCookieJar mCookieJar = new PersistentCookieJar(new SetCookieCache(), persistor);
         builder.cookieJar(mCookieJar);
 

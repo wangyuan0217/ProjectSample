@@ -15,36 +15,43 @@ project.ext {
             //okhttp
             "okhttp3"                      : 'com.squareup.okhttp3:okhttp:3.9.1',
             "logging-interceptor"          : 'com.squareup.okhttp3:logging-interceptor:3.9.1',
-            //rxjava
-            //"rxjava"                       : 'io.reactivex:rxjava:1.1.9',
-            //"rxandroid"                    : 'io.reactivex:rxandroid:1.2.1',
+            //cookie
+            "PersistentCookieJar"          : 'com.github.franmontiel:PersistentCookieJar:v1.0.0',
+            //json
+            "gson"                         : 'com.google.code.gson:gson:2.8.2',
+
+
+            //rx
             "rxjava"                       : 'io.reactivex.rxjava2:rxjava:2.2.8',
             "rxandroid"                    : 'io.reactivex.rxjava2:rxandroid:2.1.0',
             //autodispose
             "autodispose"                  : 'com.uber.autodispose:autodispose-android-archcomponents:1.4.0',
-            //json
-            "gson"                         : 'com.google.code.gson:gson:2.8.2',
-            //cookie
-            "PersistentCookieJar"          : 'com.github.franmontiel:PersistentCookieJar:v1.0.0',
+            //rxlifecycle
+            "rxlifecycle"                  : 'com.trello.rxlifecycle3:rxlifecycle:3.1.0',
+            "rxlifecycle-android"          : 'com.trello.rxlifecycle3:rxlifecycle-android:3.1.0',
+            "rxlifecycle-components"       : 'com.trello.rxlifecycle3:rxlifecycle-components:3.1.0',
 
 
             //----------------UI相关
-            "autolayout"                   : 'com.zhy:autolayout:1.4.5',
+            //https://github.com/gyf-dev/ImmersionBar
             "immersionbar"                 : 'com.gyf.immersionbar:immersionbar:3.0.0',
             "immersionbar-components"      : 'com.gyf.immersionbar:immersionbar-components:3.0.0',
             "banner"                       : 'com.youth.banner:banner:1.4.10',
-            "SuperTextView"                : 'com.github.chenBingX:SuperTextView:3.1.6.2',
+            "superTextView"                : 'com.github.chenBingX:SuperTextView:3.1.6.2',
 
 
             //----------------其它
             "butterknife"                  : 'com.jakewharton:butterknife:10.0.0',
             "butterknife-compiler"         : 'com.jakewharton:butterknife-compiler:10.0.0',
+
             "arouter-api"                  : 'com.alibaba:arouter-api:1.5.0',
             "arouter-compiler"             : 'com.alibaba:arouter-compiler:1.2.2',
+
             "glide"                        : 'com.github.bumptech.glide:glide:3.7.0',
             "glide-transformations"        : 'jp.wasabeef:glide-transformations:2.0.1',
 
-            "BaseRecyclerViewAdapterHelper": 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.47',
+
+            "baseRecyclerViewAdapterHelper": 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.47',
             "klog"                         : 'com.github.zhaokaiqiang.klog:library:1.6.0',
             "eventbus"                     : 'org.greenrobot:eventbus:3.0.0',
             "rxpermissions"                : 'com.github.tbruyelle:rxpermissions:0.10.2',
@@ -54,7 +61,6 @@ project.ext {
             //----------------第三方平台相关
             //bugly
             "bugly"                        : 'com.tencent.bugly:crashreport:3.1.0',
-
 
     ]
 }

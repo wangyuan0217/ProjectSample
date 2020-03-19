@@ -20,7 +20,8 @@ public class BaseApplication extends Application {
         });
     }
 
-    public static BaseApplication getInstance() {
+    public static BaseApplication getContext() {
         return instance;
     }
+
 }

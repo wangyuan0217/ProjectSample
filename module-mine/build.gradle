@@ -37,11 +37,6 @@ dependencies {
     //project dependencies
     implementation project(':business-common')
 
-
-    //support dependencies
-    implementation rootProject.ext.library["appcompat"]
-
-
     //apt
     annotationProcessor rootProject.ext.library["butterknife-compiler"]
     annotationProcessor rootProject.ext.library["arouter-compiler"]

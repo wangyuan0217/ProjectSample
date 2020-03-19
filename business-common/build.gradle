@@ -29,13 +29,12 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     //project dependencies
-    api project(':business-resource')
     api project(':business-model')
     api project(':business-config')
 
 
     //support dependencies
-    implementation rootProject.ext.library["appcompat"]
+    api rootProject.ext.library["appcompat"]
 
 
     //etc dependencies
@@ -59,4 +58,11 @@ dependencies {
 
     //
     api rootProject.ext.library["klog"]
+    
+    api rootProject.ext.library["eventbus"]
+
+    api rootProject.ext.library["immersionbar"]
+    api rootProject.ext.library["immersionbar-components"]
+
+    api rootProject.ext.library["superTextView"]
 }
