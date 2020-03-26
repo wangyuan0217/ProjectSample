@@ -10,11 +10,14 @@ import com.trump.library_common.ui.base.view.IBasePresenter;
 import com.trump.library_common.ui.base.view.IBaseView;
 import com.trump.library_common.utils.KeyBoardUtil;
 import com.trump.library_common.utils.LanguageUtil;
+import com.trump.library_common.utils.ToastUtil;
 
 import org.greenrobot.eventbus.EventBus;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * @author 王元_Trump
@@ -23,20 +26,21 @@ import androidx.appcompat.app.AppCompatActivity;
  */
 public abstract class BaseActivity<V extends IBaseView, P extends IBasePresenter<V>> extends AppCompatActivity {
 
+    private Unbinder mUnbinder;
     /**
      * 当前类实例
      */
-    public BaseActivity instance;
+    protected BaseActivity mActivity;
 
     /**
      * Presenter
      */
-    private P presenter;
+    protected P mPresenter;
 
     /**
      * 沉浸式状态栏
      */
-    private ImmersionBar immersionBar;
+    private ImmersionBar mImmersionBar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,8 +52,9 @@ public abstract class BaseActivity<V extends IBaseView, P extends IBasePresenter
         if (getLayoutId() != 0) {
             setContentView(getLayoutId());
         }
+        mUnbinder = ButterKnife.bind(this);
 
-        instance = this;
+        mActivity = this;
 
         //是否全屏
         if (applyFullScreen()) {
@@ -60,10 +65,10 @@ public abstract class BaseActivity<V extends IBaseView, P extends IBasePresenter
             setImmersionBar(getStatusBarColor());
         }
 
-        presenter = initPresenter();
-        if (presenter != null) {
-            presenter.setContext(this);
-            presenter.attachView((V) this);
+        mPresenter = initPresenter();
+        if (mPresenter != null) {
+            mPresenter.setContext(this);
+            mPresenter.attachView((V) this);
         }
 
         if (applyEventBus()) {
@@ -101,8 +106,8 @@ public abstract class BaseActivity<V extends IBaseView, P extends IBasePresenter
     @Override
     protected void onDestroy() {
 
-        if (presenter != null) {
-            presenter.detachView();
+        if (mPresenter != null) {
+            mPresenter.detachView();
         }
 
 //        if (applyImmersionBar() || applyFullScreen()) {
@@ -111,6 +116,10 @@ public abstract class BaseActivity<V extends IBaseView, P extends IBasePresenter
 
         if (applyEventBus()) {
             EventBus.getDefault().unregister(this);
+        }
+
+        if (mUnbinder != null) {
+            mUnbinder.unbind();
         }
 
         super.onDestroy();
@@ -126,8 +135,8 @@ public abstract class BaseActivity<V extends IBaseView, P extends IBasePresenter
      *
      * @return
      */
-    public BaseActivity getInstance() {
-        return instance;
+    public BaseActivity getActivity() {
+        return mActivity;
     }
 
     /**
@@ -181,8 +190,8 @@ public abstract class BaseActivity<V extends IBaseView, P extends IBasePresenter
      * @param statusBarColor 状态栏颜色
      */
     protected void setImmersionBar(int statusBarColor, boolean keyboardEnable) {
-        immersionBar = ImmersionBar.with(this);
-        immersionBar.statusBarColor(statusBarColor)
+        mImmersionBar = ImmersionBar.with(this);
+        mImmersionBar.statusBarColor(statusBarColor)
                 .keyboardEnable(keyboardEnable)
                 .fitsSystemWindows(true)
                 .statusBarDarkFont(true, 0.2f)
@@ -193,8 +202,8 @@ public abstract class BaseActivity<V extends IBaseView, P extends IBasePresenter
      * 全屏App内容填充状态栏
      */
     protected void setFullScreenModel() {
-        immersionBar = ImmersionBar.with(this);
-        immersionBar.keyboardEnable(false)
+        mImmersionBar = ImmersionBar.with(this);
+        mImmersionBar.keyboardEnable(false)
                 .statusBarDarkFont(true, 0.2f)
                 .init();
     }
@@ -203,8 +212,8 @@ public abstract class BaseActivity<V extends IBaseView, P extends IBasePresenter
      * 解决软键盘与沉浸式状态冲突
      */
     protected void setImmersionBarKeyboardEnable() {
-        if (immersionBar != null) {
-            immersionBar.keyboardEnable(true)
+        if (mImmersionBar != null) {
+            mImmersionBar.keyboardEnable(true)
                     .init();
         }
     }
@@ -244,8 +253,7 @@ public abstract class BaseActivity<V extends IBaseView, P extends IBasePresenter
     /**
      * 初始化数据
      */
-    protected void initData() {
-    }
+    protected abstract void initData();
 
     /**
      * 设置监听器
@@ -257,15 +265,6 @@ public abstract class BaseActivity<V extends IBaseView, P extends IBasePresenter
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(LanguageUtil.attachBaseContext(newBase));
-    }
-
-    /**
-     * 获取Presenter
-     *
-     * @return P
-     */
-    protected P getPresenter() {
-        return presenter;
     }
 
     /**
@@ -282,6 +281,10 @@ public abstract class BaseActivity<V extends IBaseView, P extends IBasePresenter
      */
     public void hideProgress() {
         LoadingDialog.close();
+    }
+
+    public void showToast(String message) {
+        ToastUtil.show(mActivity, message);
     }
 
 }

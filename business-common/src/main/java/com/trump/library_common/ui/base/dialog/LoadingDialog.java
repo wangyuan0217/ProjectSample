@@ -62,7 +62,6 @@ public class LoadingDialog {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     public static void release() {

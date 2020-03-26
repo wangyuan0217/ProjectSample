@@ -2,79 +2,65 @@ project.ext {
     ////////////////////////////////////////////////////////////////////////////////////////////////
     //上线修改///////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////
-    def releaseType = 0  //类型（0正式环境,1测试环境,2开发环境,10正式环境且显示Log）
+    def releaseType = 1  //类型（0正式环境,1测试环境,2开发环境,10正式环境且显示Log）
     def versionCode = 1
     def versionName = "1.0"
-    ////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////
-
-
     def releaseTypeDesc = ""
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    //log
     def logEnable = false
-    def httpType = 0  //0正式环境,1测试环境,2开发环境
+
+    //http相关
+    def URL_HOST
+    def PRE_H5
+
+    //第三方key等
+    def BUGLY_APPID
+    def WECHAT_ID
 
     switch (releaseType) {
         case 0://正式环境
-            releaseTypeDesc = "release"
-            logEnable = false
-            httpType = 0
-            break
         case 10://正式环境且显示Log
             releaseTypeDesc = "release"
-            logEnable = true
-            httpType = 0
+            logEnable = releaseType == 10
+
+            //http相关
+            URL_HOST = ""
+            PRE_H5 = ""
+
+
+            //第三账号相关
+            BUGLY_APPID = ""
+            WECHAT_ID = ""
+            break
             break
         case 1://测试环境
             releaseTypeDesc = "test"
             logEnable = true
-            httpType = 1
+
+
+            //http相关
+            URL_HOST = "https://www.mxnzp.com/"
+            PRE_H5 = ""
+
+
+            //第三账号相关
+            BUGLY_APPID = ""
+            WECHAT_ID = ""
             break
         case 2://开发环境
             releaseTypeDesc = "dev"
             logEnable = true
-            httpType = 2
-            break
-        default://正式环境
-            releaseTypeDesc = "release"
-            logEnable = false
-            httpType = 0
-            break
-    }
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////// //////////////////////////////////////////////////////////////
 
-    def URL_HOST
-    def PRE_H5
-    //etc...
-
-    switch (httpType) {
-        case 0://正式环境
+            //http相关
             URL_HOST = ""
             PRE_H5 = ""
-            break
-        case 1://测试环境
-            URL_HOST = ""
-            PRE_H5 = ""
-            break
-        case 2://开发环境
-            URL_HOST = ""
-            PRE_H5 = ""
-            break
-    }
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////
-    ///第三方key等///////////////////////////////////////////////////////////////////////////////////
-    ///////////////////////////////// //////////////////////////////////////////////////////////////
-    def BUGLY_APPID
-    def WECHAT_ID
-    //etc...
-    switch (httpType) {
-        case 0://正式环境
-            BUGLY_APPID = ""
-            WECHAT_ID = ""
-            break
-        default:
+
+            //第三账号相关
             BUGLY_APPID = ""
             WECHAT_ID = ""
             break
@@ -83,7 +69,6 @@ project.ext {
     variable = [
             //项目编译相关配置
             RELEASE_TYPE        : releaseType,
-            HTTP_TYPE           : httpType,
             VERSION_COMPILE     : 29,
             VERSION_BUILD_TOOL  : "29.0.3",
             VERSION_MIN_SDK     : 21,

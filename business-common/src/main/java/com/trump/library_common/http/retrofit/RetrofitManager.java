@@ -2,7 +2,6 @@ package com.trump.library_common.http.retrofit;
 
 import com.trump.config.BuildConfig;
 import com.trump.library_common.http.okhttp.OKHttpFactory;
-import com.trump.library_common.http.service.ServiceMine;
 
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -12,7 +11,7 @@ public class RetrofitManager {
 
     private volatile static Retrofit sRetrofit;
 
-    private static Retrofit getRetrofitClient() {
+    public static Retrofit getRetrofitClient() {
         if (sRetrofit == null) {
             synchronized (RetrofitManager.class) {
                 if (sRetrofit == null) {
@@ -31,10 +30,6 @@ public class RetrofitManager {
             }
         }
         return sRetrofit;
-    }
-
-    public static ServiceMine getServiceMine() {
-        return getRetrofitClient().create(ServiceMine.class);
     }
 
 }

@@ -16,6 +16,8 @@ import org.greenrobot.eventbus.EventBus;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * @author 王元_Trump
@@ -24,6 +26,7 @@ import androidx.fragment.app.Fragment;
  */
 public abstract class BaseFragment<V extends IBaseView, P extends IBasePresenter<V>> extends Fragment {
 
+    private Unbinder mUnbinder;
     /**
      * Presenter
      */
@@ -62,10 +65,11 @@ public abstract class BaseFragment<V extends IBaseView, P extends IBasePresenter
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(getLayoutId(), container, false);
 
-        if (view.getParent() != null) {
-            ViewGroup parent = (ViewGroup) view.getParent();
-            parent.removeView(view);
-        }
+//        if (view.getParent() != null) {
+//            ViewGroup parent = (ViewGroup) view.getParent();
+//            parent.removeView(view);
+//        }
+        mUnbinder = ButterKnife.bind(this, view);
         return view;
     }
 
@@ -132,6 +136,9 @@ public abstract class BaseFragment<V extends IBaseView, P extends IBasePresenter
             EventBus.getDefault().unregister(this);
         }
 
+        if (mUnbinder != null) {
+            mUnbinder.unbind();
+        }
         super.onDestroyView();
     }
 

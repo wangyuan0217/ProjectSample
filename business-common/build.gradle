@@ -10,6 +10,12 @@ android {
         versionName "1.0"
 
         consumerProguardFiles 'consumer-rules.pro'
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
     }
 
     buildTypes {
@@ -35,6 +41,8 @@ dependencies {
 
     //support dependencies
     api rootProject.ext.library["appcompat"]
+    api rootProject.ext.library["material"]
+    api rootProject.ext.library["constraintlayout"]
 
 
     //etc dependencies
@@ -42,13 +50,12 @@ dependencies {
     //apt在需要使用的module添加
     //annotationProcessor rootProject.ext.library["butterknife-compiler"]
     api rootProject.ext.library["arouter-api"]
+    annotationProcessor rootProject.ext.library["arouter-compiler"]
     //apt在需要使用的module添加
     //annotationProcessor rootProject.ext.library["arouter-compiler"]
 
     //http
     api rootProject.ext.library["gson"]
-    api rootProject.ext.library["rxjava"]
-    api rootProject.ext.library["rxandroid"]
     api rootProject.ext.library["retrofit2"]
     api rootProject.ext.library["okhttp3"]
     api rootProject.ext.library["converter-gson"]
@@ -56,13 +63,19 @@ dependencies {
     api rootProject.ext.library["PersistentCookieJar"]
     api rootProject.ext.library["logging-interceptor"]
 
-    //
+    //Rx
+    api rootProject.ext.library["rxjava"]
+    api rootProject.ext.library["rxandroid"]
+    api rootProject.ext.library["rxbinding2"]
+    api rootProject.ext.library["rxpermissions"]
+
+
     api rootProject.ext.library["klog"]
-    
     api rootProject.ext.library["eventbus"]
 
     api rootProject.ext.library["immersionbar"]
     api rootProject.ext.library["immersionbar-components"]
 
     api rootProject.ext.library["superTextView"]
+    api rootProject.ext.library["FlycoTabLayoutZ"]
 }

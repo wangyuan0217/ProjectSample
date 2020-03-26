@@ -4,10 +4,16 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.widget.Toast;
 
+import com.trump.library_common.BaseApplication;
+
 
 public class ToastUtil {
 
     private static Toast toast;
+
+    public static void show(String msg) {
+        show(BaseApplication.getContext(), msg);
+    }
 
     /**
      * 显示Toast消息

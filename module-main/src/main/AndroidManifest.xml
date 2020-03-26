@@ -2,7 +2,7 @@
     package="com.trump.main">
 
     <application>
-        <activity android:name="com.trump.main.MainActivity">
+        <activity android:name=".main.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

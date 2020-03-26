@@ -123,16 +123,11 @@ public enum OKHttpFactory {
 //                path = path.substring(0, path.indexOf("?"));
 //            }
 
+
+            //app_id:iryjftomotjfnupl   app_secret:UEpEbTAxeExPc0ZqUWpURVk2NVZWdz09
             Request authorised = originalRequest.newBuilder()
-//                    .addHeader("Authentication", MD5Utils.getMD5(path + date + DeviceUtils.getDeviceId()))
-//                    .addHeader("Carry-Over", date + "-" + DeviceUtils.getDeviceId())
-//                    .addHeader("User-Agent", "Linux; Android " + Build.VERSION.RELEASE + "; Version/" + AppUtils.getVersionName())
-//                    .addHeader("token", UserManager.getInstance().getToken())
-//                    .addHeader("sys_token", UserManager.getInstance().getToken())
-//                    .addHeader("versionNumber", com.broke.xinxianshi.common.BuildConfig.IS_GRAY_TEST)
-//                    .addHeader("imie", DeviceUtils.getDeviceId())
-//                    .addHeader("acount", UserManager.getInstance().getAccountInfo())
-//                    .addHeader("Content-type", "application/json; charset=utf-8")
+                    .addHeader("app_id", "iryjftomotjfnupl")
+                    .addHeader("app_secret", "UEpEbTAxeExPc0ZqUWpURVk2NVZWdz09")
                     .build();
             return chain.proceed(authorised);
         };

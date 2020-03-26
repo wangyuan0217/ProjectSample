@@ -18,12 +18,10 @@ public interface IBaseView {
     void hideProgress();
 
     /**
-     * 处理消息
+     * Toast提示
      *
      * @param message
-     * @param sub_code
-     * @param sub_message
      */
-    void handleMsg(String message, String sub_code, String sub_message);
+    void showToast(String message);
 
 }
