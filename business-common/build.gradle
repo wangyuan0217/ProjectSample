@@ -41,6 +41,7 @@ dependencies {
 
     //support dependencies
     api rootProject.ext.library["appcompat"]
+    api rootProject.ext.library["recyclerview"]
     api rootProject.ext.library["material"]
     api rootProject.ext.library["constraintlayout"]
 

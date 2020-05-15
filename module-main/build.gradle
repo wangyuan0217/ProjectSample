@@ -43,6 +43,6 @@ dependencies {
     annotationProcessor rootProject.ext.library["butterknife-compiler"]
     annotationProcessor rootProject.ext.library["arouter-compiler"]
 
-
     //etc dependencies
+    api rootProject.ext.library["x5webview"]
 }

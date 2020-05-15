@@ -1,8 +1,12 @@
 package com.trump.main.main.activity;
 
+import android.Manifest;
+
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.flyco.tablayout.SlidingTabLayout;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.trump.library_common.ui.base.activity.BaseActivity;
+import com.trump.library_common.utils.ToastUtil;
 import com.trump.main.MainItemFragment;
 import com.trump.main.R;
 import com.trump.main.R2;
@@ -16,6 +20,7 @@ import java.util.List;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
+import io.reactivex.disposables.Disposable;
 
 @Route(path = "/main/home")
 public class MainActivity extends BaseActivity<MainContract.View, MainContract.Presenter> implements MainContract.View {
@@ -56,11 +61,14 @@ public class MainActivity extends BaseActivity<MainContract.View, MainContract.P
         }
 
         mTabLayout.setViewPager(mViewPager, tabTitles, mActivity, fragmentList);
+
     }
 
     @Override
     protected void initListener() {
-
+        Disposable disposable = new RxPermissions(this)
+                .request(Manifest.permission.CAMERA)
+                .subscribe(aBoolean -> ToastUtil.show("boolean = " + aBoolean));
     }
 
 }

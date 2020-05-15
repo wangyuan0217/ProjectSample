@@ -43,7 +43,6 @@ public class BasePresenter<V extends IBaseView> implements IBasePresenter<V> {
     @Override
     public void attachView(V mvpView) {
         this.mvpView = mvpView;
-        this.compositeDisposable = new CompositeDisposable();
     }
 
     @Override
@@ -57,11 +56,10 @@ public class BasePresenter<V extends IBaseView> implements IBasePresenter<V> {
 
     @Override
     public void addTask(Disposable disposable) {
+        if (disposable == null) return;
+        
         if (compositeDisposable == null) {
-            return;
-        }
-        if (disposable == null) {
-            return;
+            this.compositeDisposable = new CompositeDisposable();
         }
         compositeDisposable.add(disposable);
     }
