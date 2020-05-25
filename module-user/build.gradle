@@ -1,17 +1,10 @@
-if (rootProject.ext.variable.isModulePackage) {
-    apply plugin: 'com.android.application'
-} else {
-    apply plugin: 'com.android.library'
-}
+apply plugin: 'com.android.library'
 apply plugin: 'com.jakewharton.butterknife'
 
 android {
     compileSdkVersion rootProject.ext.variable.VERSION_COMPILE
     buildToolsVersion rootProject.ext.variable.VERSION_BUILD_TOOL
     defaultConfig {
-        if (rootProject.ext.variable.isModulePackage) {
-            applicationId rootProject.ext.variable.ID_MAIN
-        }
         minSdkVersion rootProject.ext.variable.VERSION_MIN_SDK
         targetSdkVersion rootProject.ext.variable.VERSION_TARGET_SDK
         versionCode 1
@@ -30,11 +23,6 @@ android {
     sourceSets {
         main {
             jniLibs.srcDirs = ['libs']
-            if (rootProject.ext.variable.isModulePackage) {
-                manifest.srcFile 'src/main/module/AndroidManifest.xml'
-            } else {
-                manifest.srcFile 'src/main/AndroidManifest.xml'
-            }
         }
     }
 
@@ -49,11 +37,11 @@ dependencies {
 
     //project dependencies
     implementation project(':business-common')
-    implementation project(':module-user')
-
 
     //apt
     annotationProcessor rootProject.ext.library["butterknife-compiler"]
     annotationProcessor rootProject.ext.library["arouter-compiler"]
+
+    //etc dependencies
 
 }

@@ -2,7 +2,9 @@ package com.trump.config;
 
 public class CommonConfig {
 
-    public static String[] MODULE_APPIDS = {BuildConfig.ID_MINE};
+    public static String[] MODULE_APPIDS = {BuildConfig.ID_MAIN + ".MainApplication",
+            BuildConfig.ID_MINE + ".MineApplication"
+    };
 
     //组件化标识
     public static boolean PACKAGE_MODULE = Boolean.parseBoolean(BuildConfig.isModulePackage);

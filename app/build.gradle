@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 
-
 android {
     compileSdkVersion rootProject.ext.variable.VERSION_COMPILE
     buildToolsVersion rootProject.ext.variable.VERSION_BUILD_TOOL
@@ -80,8 +79,12 @@ dependencies {
 
     //project dependencies
     implementation project(':business-common')
-    implementation project(':module-main')
-    implementation project(':module-mine')
+
+    if (!rootProject.ext.variable.isModulePackage) {
+        implementation project(':module-main')
+        implementation project(':module-mine')
+    }
+    implementation project(':module-user')
 
 
     //apt

@@ -31,4 +31,10 @@ public class ActivityJumper {
                 .navigation();
     }
 
+    //个人信息
+    public static void toUserInfo() {
+        ARouter.getInstance().build("/user/info")
+                .navigation();
+    }
+
 }

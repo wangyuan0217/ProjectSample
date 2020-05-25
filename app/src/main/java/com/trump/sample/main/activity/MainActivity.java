@@ -22,7 +22,8 @@ import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 
 @Route(path = "/app/main")
-public class MainActivity extends BaseActivity<MainContract.View, MainContract.Presenter> implements MainContract.View {
+public class MainActivity extends BaseActivity<MainContract.View, MainContract.Presenter>
+        implements MainContract.View {
 
     @BindView(R.id.viewPager)
     ViewPager mViewPager;

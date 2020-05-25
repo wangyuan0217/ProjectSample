@@ -1,2 +1,7 @@
-include ':app', ':business-config', ':business-common', ':module-main', ':module-mine'
+include ':app'
+include ':business-config'
+include ':business-common'
+include ':module-main'
+include ':module-mine'
+include ':module-user'
 rootProject.name = 'ProjectSample'

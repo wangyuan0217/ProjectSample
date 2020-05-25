@@ -9,7 +9,8 @@ project.ext {
     ////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////
     // false ：集成化模式（打包整个项目apk，子模块不可独立运行）,true: 组件化模式（子模块可以独立运行）
-    def isModulePackage = false
+//    def isModulePackage = false
+    def isModulePackage = true
     ////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -71,11 +72,12 @@ project.ext {
     }
 
     variable = [
-            ID_MAIN             : "com.trump.sample_main",
-            ID_MINE             : "com.trump.sample_mine",
-
             //组件化
             isModulePackage     : isModulePackage,
+            //模块包名
+            ID_MAIN             : "com.trump.main",
+            ID_MINE             : "com.trump.mine",
+
 
             //项目编译相关配置
             RELEASE_TYPE        : releaseType,

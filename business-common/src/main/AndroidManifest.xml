@@ -17,6 +17,9 @@
         <meta-data
             android:name="notch.config"
             android:value="portrait|landscape" />
+
+        <!-- application子线程初始化 -->
+        <service android:name=".app.InitializeService" />
     </application>
 
 </manifest>
