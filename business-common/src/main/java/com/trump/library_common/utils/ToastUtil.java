@@ -4,7 +4,7 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.widget.Toast;
 
-import com.trump.library_common.BaseApplication;
+import com.trump.library_common.app.BaseApplication;
 
 
 public class ToastUtil {

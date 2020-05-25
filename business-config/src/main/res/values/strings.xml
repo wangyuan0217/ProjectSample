@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Trump</string>
+    <string name="app_name_main">Main</string>
+    <string name="app_name_mine">Mine</string>
+
+    <string name="nav_tab_home">主页</string>
+    <string name="nav_tab_mine">我的</string>
+
+    <string name="tip_exit_on_main">再按一次退出程序</string>
+</resources>

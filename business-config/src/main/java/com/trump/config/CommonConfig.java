@@ -2,8 +2,13 @@ package com.trump.config;
 
 public class CommonConfig {
 
+    public static String[] MODULE_APPIDS = {BuildConfig.ID_MINE};
+
+    //组件化标识
+    public static boolean PACKAGE_MODULE = Boolean.parseBoolean(BuildConfig.isModulePackage);
+
     //日志开关
-    public static boolean LOG_ENABLE = Boolean.valueOf(BuildConfig.LOG_ENABLE);
+    public static boolean LOG_ENABLE = Boolean.parseBoolean(BuildConfig.LOG_ENABLE);
 
 
     //DB配置

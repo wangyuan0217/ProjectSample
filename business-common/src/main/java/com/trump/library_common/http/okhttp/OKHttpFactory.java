@@ -9,7 +9,7 @@ import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersisto
 import com.socks.library.KLog;
 import com.trump.config.CommonConfig;
 import com.trump.config.HttpConfigConstant;
-import com.trump.library_common.BaseApplication;
+import com.trump.library_common.app.BaseApplication;
 
 import java.io.File;
 import java.security.SecureRandom;

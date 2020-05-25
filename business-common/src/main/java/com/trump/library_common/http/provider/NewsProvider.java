@@ -3,14 +3,15 @@ package com.trump.library_common.http.provider;
 
 import com.alibaba.android.arouter.facade.template.IProvider;
 import com.trump.library_common.http.response.BaseResponse;
-import com.trump.model.response.NewsType;
+import com.trump.library_common.model.response.NewsType;
 
 import java.util.List;
 
 import io.reactivex.Flowable;
 
 /**
- * Description:账户相关网络请求
+ * @author 王元_Trump
+ * @desc 资讯相关网络请求
  */
 //tip by arouter
 //Declaration interface, other components get the service instance through the interface

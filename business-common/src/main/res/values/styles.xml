@@ -1,7 +1,9 @@
 <resources>
 
+    <style name="Base" parent="Theme.AppCompat.Light.NoActionBar" />
+
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Base">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -15,12 +17,18 @@
 
 
         <!-- Window color -->
-<!--        <item name="android:windowBackground">#ffffff</item>-->
+        <!--        <item name="android:windowBackground">#ffffff</item>-->
 
     </style>
 
+    <!--全屏主题-->
+    <style name="FullScreen" parent="Base">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
 
-    <style name="SimpleTranslucent" parent="Theme.AppCompat.Light.NoActionBar">
+
+    <style name="SimpleTranslucent" parent="Base">
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowIsTranslucent">true</item>

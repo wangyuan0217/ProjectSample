@@ -12,8 +12,8 @@ import retrofit2.http.Query;
 public interface ServiceMine {
 
     @POST("VT/chat/loginCallback")
-    Flowable<BaseResponse<String>> loginCallback(@Query("account") String account,
-                                                 @Query("token") String token,
-                                                 @Query("device") String device,
-                                                 @Query("deviceNum") String deviceNum);
+    Flowable<BaseResponse<String>> login(@Query("account") String account,
+                                         @Query("token") String token,
+                                         @Query("device") String device,
+                                         @Query("deviceNum") String deviceNum);
 }

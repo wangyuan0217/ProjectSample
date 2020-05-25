@@ -8,6 +8,11 @@ project.ext {
     def releaseTypeDesc = ""
     ////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////
+    // false ：集成化模式（打包整个项目apk，子模块不可独立运行）,true: 组件化模式（子模块可以独立运行）
+    def isModulePackage = false
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
 
     //log
     def logEnable = false
@@ -34,7 +39,6 @@ project.ext {
             //第三账号相关
             BUGLY_APPID = ""
             WECHAT_ID = ""
-            break
             break
         case 1://测试环境
             releaseTypeDesc = "test"
@@ -67,6 +71,12 @@ project.ext {
     }
 
     variable = [
+            ID_MAIN             : "com.trump.sample_main",
+            ID_MINE             : "com.trump.sample_mine",
+
+            //组件化
+            isModulePackage     : isModulePackage,
+
             //项目编译相关配置
             RELEASE_TYPE        : releaseType,
             VERSION_COMPILE     : 29,

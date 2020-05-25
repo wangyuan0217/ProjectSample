@@ -1,7 +1,7 @@
 package com.trump.library_common.http.service;
 
 import com.trump.library_common.http.response.BaseResponse;
-import com.trump.model.response.NewsType;
+import com.trump.library_common.model.response.NewsType;
 
 import java.util.List;
 

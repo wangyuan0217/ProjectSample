@@ -1,8 +1,7 @@
 package com.trump.library_common.router;
 
-import android.content.Context;
-
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.trump.library_common.ui.base.fragment.BaseFragment;
 
 /**
  * @author Trump
@@ -12,12 +11,24 @@ import com.alibaba.android.arouter.launcher.ARouter;
  */
 public class ActivityJumper {
 
-    /**
-     * 公共的webviewactivity
-     */
-    public static void toPersonnalInfo(Context context) {
-        ARouter.getInstance().build("/mine/personnal")
-                .navigation(context);
+    public static BaseFragment getFragmentMain() {
+        return (BaseFragment) ARouter.getInstance().build("/main/fragment").navigation();
+    }
+
+    public static BaseFragment getFragmentMine() {
+        return (BaseFragment) ARouter.getInstance().build("/mine/fragment").navigation();
+    }
+
+    //开屏页
+    public static void toSplash() {
+        ARouter.getInstance().build("/app/splash")
+                .navigation();
+    }
+
+    //app主页
+    public static void toMain() {
+        ARouter.getInstance().build("/app/main")
+                .navigation();
     }
 
 }

@@ -186,6 +186,11 @@ public class AppManager {
     public void AppExit() {
         try {
             finishAllActivity();
+
+            android.os.Process.killProcess(android.os.Process.myPid());
+            System.exit(0);
+
+
             // 杀死该应用进程
 //          android.os.Process.killProcess(android.os.Process.myPid());
 //            调用 System.exit(n) 实际上等效于调用：

@@ -15,7 +15,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.trump.library_common.BaseApplication;
+import com.trump.library_common.app.BaseApplication;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresPermission;

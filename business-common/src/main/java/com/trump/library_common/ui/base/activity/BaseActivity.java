@@ -31,6 +31,7 @@ public abstract class BaseActivity<V extends IBaseView, P extends IBasePresenter
      * 当前类实例
      */
     protected BaseActivity mActivity;
+    protected Context mContext;
 
     /**
      * Presenter
@@ -54,6 +55,7 @@ public abstract class BaseActivity<V extends IBaseView, P extends IBasePresenter
         }
         mUnbinder = ButterKnife.bind(this);
 
+        mContext = this;
         mActivity = this;
 
         //是否全屏
@@ -172,7 +174,7 @@ public abstract class BaseActivity<V extends IBaseView, P extends IBasePresenter
      * @return
      */
     protected int getStatusBarColor() {
-        return R.color.colorPrimary;
+        return R.color.white;
     }
 
     /**

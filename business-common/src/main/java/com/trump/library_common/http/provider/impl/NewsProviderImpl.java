@@ -7,7 +7,7 @@ import com.trump.library_common.http.provider.NewsProvider;
 import com.trump.library_common.http.response.BaseResponse;
 import com.trump.library_common.http.retrofit.RetrofitManager;
 import com.trump.library_common.http.service.ServiceNews;
-import com.trump.model.response.NewsType;
+import com.trump.library_common.model.response.NewsType;
 
 import java.util.List;
 
@@ -15,8 +15,7 @@ import io.reactivex.Flowable;
 
 /**
  * @author 王元_Trump
- * @time 2020/3/20 0020 15:38
- * @desc 资讯
+ * @desc 资讯相关网络请求
  */
 @Route(path = "/http/news", name = "资讯新闻模块")
 public class NewsProviderImpl implements NewsProvider {

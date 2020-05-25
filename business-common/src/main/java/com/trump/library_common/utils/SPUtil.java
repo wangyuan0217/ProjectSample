@@ -3,7 +3,7 @@ package com.trump.library_common.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.trump.library_common.BaseApplication;
+import com.trump.library_common.app.BaseApplication;
 
 import java.util.Collections;
 import java.util.HashMap;

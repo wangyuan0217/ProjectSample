@@ -1,2 +1,2 @@
-include ':app', ':business-common', ':module-main', ':module-mine', ':business-config', ':business-model'
-rootProject.name='ProjectSample'
+include ':app', ':business-config', ':business-common', ':module-main', ':module-mine'
+rootProject.name = 'ProjectSample'

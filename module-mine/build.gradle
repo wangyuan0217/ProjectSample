@@ -1,10 +1,17 @@
-apply plugin: 'com.android.library'
+if (rootProject.ext.variable.isModulePackage) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
 apply plugin: 'com.jakewharton.butterknife'
 
 android {
     compileSdkVersion rootProject.ext.variable.VERSION_COMPILE
     buildToolsVersion rootProject.ext.variable.VERSION_BUILD_TOOL
     defaultConfig {
+        if (rootProject.ext.variable.isModulePackage) {
+            applicationId rootProject.ext.variable.ID_MINE
+        }
         minSdkVersion rootProject.ext.variable.VERSION_MIN_SDK
         targetSdkVersion rootProject.ext.variable.VERSION_TARGET_SDK
         versionCode 1
@@ -19,9 +26,15 @@ android {
         }
     }
 
+    //每个模块下的build.gradle文件
     sourceSets {
         main {
             jniLibs.srcDirs = ['libs']
+            if (rootProject.ext.variable.isModulePackage) {
+                manifest.srcFile 'src/main/module/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+            }
         }
     }
 
@@ -38,6 +51,8 @@ dependencies {
     implementation project(':business-common')
 
     //apt
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     annotationProcessor rootProject.ext.library["butterknife-compiler"]
     annotationProcessor rootProject.ext.library["arouter-compiler"]
 

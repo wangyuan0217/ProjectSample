@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.gyf.immersionbar.ImmersionBar;
 import com.trump.library_common.ui.base.activity.BaseActivity;
 import com.trump.library_common.ui.base.dialog.LoadingDialog;
 import com.trump.library_common.ui.base.view.IBasePresenter;
@@ -36,11 +35,6 @@ public abstract class BaseFragment<V extends IBaseView, P extends IBasePresenter
      * 基类Activity
      */
     private BaseActivity activity;
-
-    /**
-     * 沉浸式状态栏
-     */
-    private ImmersionBar immersionBar;
 
     @Override
     public void onAttach(Context context) {
@@ -77,19 +71,13 @@ public abstract class BaseFragment<V extends IBaseView, P extends IBasePresenter
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        handleImmersionBar();
+
         init(savedInstanceState);
         initToolbar(savedInstanceState);
         initViews(view, savedInstanceState);
         initListener();
         initData();
-
-        if (!applyLazyFragmentHandleImmersionBar()) {
-            if (applyFullScreen()) {
-                setFullScreenModel();
-            } else if (applyImmersionBar()) {
-                setImmersionBar();
-            }
-        }
 
         if (applyEventBus()) {
             EventBus.getDefault().register(this);
@@ -172,6 +160,13 @@ public abstract class BaseFragment<V extends IBaseView, P extends IBasePresenter
     protected abstract int getLayoutId();
 
     /**
+     * 配置状态栏
+     */
+    protected void handleImmersionBar() {
+
+    }
+
+    /**
      * 初始化view
      */
     protected void initViews(View view, Bundle savedInstanceState) {
@@ -199,72 +194,6 @@ public abstract class BaseFragment<V extends IBaseView, P extends IBasePresenter
      * 设置监听器
      */
     protected void initListener() {
-    }
-
-    /**
-     * 全屏App内容填充状态栏
-     */
-    protected void setFullScreenModel() {
-        immersionBar = ImmersionBar.with(this);
-        immersionBar.statusBarDarkFont(true, 0.2f).keyboardEnable(true).init();
-    }
-
-    /**
-     * 解决软键盘与沉浸式状态冲突
-     */
-    protected void setImmersionBarKeyboardEnable() {
-        if (immersionBar != null) {
-            immersionBar.keyboardEnable(true)
-                    .init();
-        }
-    }
-
-    /**
-     * 初始化沉浸式
-     */
-    public void setImmersionBar() {
-        try {
-            immersionBar = ImmersionBar.with(this);
-            immersionBar.fitsSystemWindows(getFitsSystemWindows()).keyboardEnable(true).statusBarDarkFont(true, 0.2f).init();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * 是否铺满状态栏区域
-     *
-     * @return false 重叠铺满，true：下方view与状态栏不重叠
-     */
-    protected boolean getFitsSystemWindows() {
-        return true;
-    }
-
-    /**
-     * 是否由LazyFragment处理沉浸式状态栏
-     *
-     * @return
-     */
-    protected boolean applyLazyFragmentHandleImmersionBar() {
-        return false;
-    }
-
-    /**
-     * 是否设置全屏显示
-     *
-     * @return
-     */
-    protected boolean applyFullScreen() {
-        return false;
-    }
-
-    /**
-     * 是否在Fragment使用沉浸式
-     *
-     * @return the boolean
-     */
-    protected boolean applyImmersionBar() {
-        return true;
     }
 
     /**
