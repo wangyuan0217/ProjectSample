@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.socks.library.KLog;
+import com.tencent.bugly.crashreport.CrashReport;
 import com.tencent.smtt.sdk.QbSdk;
 import com.trump.config.CommonConfig;
 
@@ -43,14 +44,15 @@ public class InitializeService extends IntentService {
 
     private void publicApplicationInit() {
 
-        //RxJava全局异常处理（无网络闪退）
-        RxJavaPlugins.setErrorHandler(throwable -> {
-        });
+        KLog.d("function - publicApplicationInit");
 
+        initBugly();
 
         //initX5webview();
 
-        KLog.d("function - publicApplicationInit");
+        //RxJava全局异常处理（无网络闪退）
+        RxJavaPlugins.setErrorHandler(throwable -> {
+        });
 
         //初始化内存泄漏检测
 //        LeakCanary.install(App.getInstance());
@@ -90,5 +92,10 @@ public class InitializeService extends IntentService {
         };
         //x5内核初始化接口
         QbSdk.initX5Environment(getApplicationContext(), cb);
+    }
+
+    private void initBugly() {
+        Context context = getApplicationContext();
+        CrashReport.initCrashReport(context, CommonConfig.BUGLY_ID, CommonConfig.LOG_ENABLE);
     }
 }

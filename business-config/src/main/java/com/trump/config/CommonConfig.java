@@ -17,5 +17,5 @@ public class CommonConfig {
     public static int DB_VERSION = Integer.parseInt(BuildConfig.DB_VERSION);
     public static String DB_NAME = BuildConfig.DB_NAME;
 
-
+    public static String BUGLY_ID = BuildConfig.BUGLY_APPID;
 }

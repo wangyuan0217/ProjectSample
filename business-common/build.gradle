@@ -81,4 +81,7 @@ dependencies {
 
     api rootProject.ext.library["superTextView"]
     api rootProject.ext.library["FlycoTabLayoutZ"]
+
+
+    api rootProject.ext.library["bugly"]
 }

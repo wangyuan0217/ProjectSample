@@ -34,8 +34,6 @@ public class BaseApplication extends Application {
         //是否开启打印日志
         KLog.init(CommonConfig.LOG_ENABLE);
 
-        initBugly();
-
         initLifecycle();
 
         initARouter();
@@ -43,16 +41,6 @@ public class BaseApplication extends Application {
         //在子线程中完成其他初始化
         InitializeService.start(this);
     }
-
-    private void initBugly() {
-//        Context context = getApplicationContext();
-//        String packageName = context.getPackageName();
-//        String processName = SystemUtil.getProcessName(android.os.Process.myPid());
-//        CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(context);
-//        strategy.setUploadProcess(processName == null || processName.equals(packageName));
-//        CrashReport.initCrashReport(context, Constants.BUGLY_ID, isDebug, strategy);
-    }
-
 
     /**
      * 初始化路由

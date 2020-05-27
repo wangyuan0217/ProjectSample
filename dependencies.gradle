@@ -65,7 +65,7 @@ project.ext {
 
             //----------------第三方平台相关
             //bugly
-            "bugly"                        : 'com.tencent.bugly:crashreport:3.1.0',
+            "bugly"                        : 'com.tencent.bugly:crashreport:3.2.2',
             //x5webview
             "x5webview"                    : 'com.tencent.tbs.tbssdk:sdk:43697',
 

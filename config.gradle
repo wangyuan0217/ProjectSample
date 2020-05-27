@@ -23,7 +23,6 @@ project.ext {
     def PRE_H5
 
     //第三方key等
-    def BUGLY_APPID
     def WECHAT_ID
 
     switch (releaseType) {
@@ -38,7 +37,6 @@ project.ext {
 
 
             //第三账号相关
-            BUGLY_APPID = ""
             WECHAT_ID = ""
             break
         case 1://测试环境
@@ -52,7 +50,6 @@ project.ext {
 
 
             //第三账号相关
-            BUGLY_APPID = ""
             WECHAT_ID = ""
             break
         case 2://开发环境
@@ -66,7 +63,6 @@ project.ext {
 
 
             //第三账号相关
-            BUGLY_APPID = ""
             WECHAT_ID = ""
             break
     }
@@ -99,7 +95,7 @@ project.ext {
 
 
             //第三方配置信息等
-            "BUGLY_APPID"       : BUGLY_APPID,
+            "BUGLY_APPID"       : "a62d84d9e5",
             "WECHAT_APPID"      : WECHAT_ID,
 
 
