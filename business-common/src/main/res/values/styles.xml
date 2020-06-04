@@ -17,21 +17,26 @@
 
 
         <!-- Window color -->
-        <!--        <item name="android:windowBackground">#ffffff</item>-->
+        <!-- <item name="android:windowBackground">#ffffff</item>-->
 
     </style>
 
     <!--全屏主题-->
-    <style name="FullScreen" parent="Base">
+    <style name="FullScreen" parent="AppTheme">
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
+    <!--SplashActivity Theme-->
+    <style name="SplashTheme" parent="FullScreen">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@mipmap/ic_launcher</item>
+    </style>
 
-    <style name="SimpleTranslucent" parent="Base">
+    <style name="SimpleTranslucent" parent="AppTheme">
         <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 
     <style name="TransparentDialog" parent="@android:style/Theme.Dialog">

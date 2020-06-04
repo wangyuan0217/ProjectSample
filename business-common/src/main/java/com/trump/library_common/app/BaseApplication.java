@@ -7,7 +7,6 @@ import android.os.Bundle;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.socks.library.KLog;
 import com.trump.config.CommonConfig;
-import com.trump.library_common.BuildConfig;
 import com.trump.library_common.utils.AppManager;
 
 import androidx.annotation.NonNull;
@@ -46,7 +45,7 @@ public class BaseApplication extends Application {
      * 初始化路由
      */
     private void initARouter() {
-        if (BuildConfig.DEBUG) {
+        if (CommonConfig.LOG_ENABLE) {
             // 打印日志
             ARouter.openLog();
             // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)

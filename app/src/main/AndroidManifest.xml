@@ -13,15 +13,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".splash.SplashActivity">
+        <activity
+            android:name=".splash.SplashActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".test.activity.TestActivity"/>
-        <activity android:name=".main.activity.MainActivity"/>
+        <activity android:name=".test.activity.TestActivity" />
+        <activity android:name=".main.activity.MainActivity" />
 
     </application>
 
