@@ -34,4 +34,4 @@ assembleDebug:
     # - curl "钉钉WebHook地址" -XPOST -H 'content-type:application/json' -d '{"msgtype":"text","text":{"content":"@135xxxxxxx@135xxxxxxx@135xxxxxxx【xxxx】打包完成，下载地址：https://www.pgyer.com/xxxx"},"at":{"atMobiles":["135xxxxxxx","135xxxxxxx","135xxxxxxx"],"isAtAll":false}}'
   artifacts:
     paths:
-      - app/build/outputs/apk/debug/app-debug.apk
+      - outputs/apk/app-debug.apk
