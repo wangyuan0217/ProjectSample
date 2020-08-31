@@ -60,17 +60,17 @@ android {
     }
 
     //版本输出包名自动追加版本号和版本名称
-    applicationVariants.all {
-        variant ->
-            variant.outputs.all {
-                //服务地址类型
-                def releaseTypeDesc = rootProject.ext.variable.PACKAGE_RELEASE_DESC
-                if (buildType.name == 'release') {
-                    outputFileName = "App_" + defaultConfig.versionName + "_" + buildType.name + ".apk"
-                } else {
-                    outputFileName = "App_" + defaultConfig.versionName + "_" + new Date().format("yyyy-MM-dd_HHmmss") + "_" + buildType.name + "_" + releaseTypeDesc + ".apk"
-                }
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            //服务地址类型
+            def releaseTypeDesc = rootProject.ext.variable.PACKAGE_RELEASE_DESC
+            if (buildType.name == 'release') {
+                outputFileName = "App_" + defaultConfig.versionName + "_" + buildType.name + ".apk"
+            } else {
+                outputFileName = "App_" + defaultConfig.versionName + "_" + new Date().format("yyyy-MM-dd_HHmmss") + "_" + buildType.name + "_" + releaseTypeDesc + ".apk"
             }
+            variant.packageApplication.outputDirectory = new File("../apk")
+        }
     }
 }
 
