@@ -7,14 +7,8 @@ import com.trump.library_common.ui.base.view.IBasePresenter;
 @Route(path = "/main/fragment_activity")
 public class MainFragmentActivity extends BaseActivity {
 
-    @Override
     protected int getLayoutId() {
         return R.layout.main_activity_main_fragment;
-    }
-
-    @Override
-    protected IBasePresenter initPresenter() {
-        return null;
     }
 
     @Override

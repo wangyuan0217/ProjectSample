@@ -18,6 +18,10 @@ android {
         }
     }
 
+    viewBinding {
+        enabled = true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -46,9 +50,6 @@ dependencies {
 
 
     //etc dependencies
-    api rootProject.ext.library["butterknife"]
-    //apt在需要使用的module添加
-    //annotationProcessor rootProject.ext.library["butterknife-compiler"]
     api rootProject.ext.library["arouter-api"]
     annotationProcessor rootProject.ext.library["arouter-compiler"]
     //apt在需要使用的module添加

@@ -3,7 +3,6 @@ if (rootProject.ext.variable.isModulePackage) {
 } else {
     apply plugin: 'com.android.library'
 }
-apply plugin: 'com.jakewharton.butterknife'
 
 android {
     compileSdkVersion rootProject.ext.variable.VERSION_COMPILE
@@ -24,6 +23,10 @@ android {
                 arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
+    }
+
+    viewBinding {
+        enabled = true
     }
 
     //每个模块下的build.gradle文件
@@ -52,7 +55,6 @@ dependencies {
     implementation project(':module-user')
 
     //apt
-    annotationProcessor rootProject.ext.library["butterknife-compiler"]
     annotationProcessor rootProject.ext.library["arouter-compiler"]
 
 

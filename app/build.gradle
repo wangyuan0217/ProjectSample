@@ -105,6 +105,10 @@ android {
         }
     }
 
+    viewBinding {
+        enabled = true
+    }
+
     sourceSets {
         main {
             jniLibs.srcDirs = ['libs']
@@ -159,7 +163,6 @@ dependencies {
 
 
     //apt
-    annotationProcessor rootProject.ext.library["butterknife-compiler"]
     annotationProcessor rootProject.ext.library["arouter-compiler"]
 
 }

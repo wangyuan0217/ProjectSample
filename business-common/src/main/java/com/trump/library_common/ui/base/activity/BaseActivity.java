@@ -2,6 +2,11 @@ package com.trump.library_common.ui.base.activity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewbinding.ViewBinding;
 
 import com.gyf.immersionbar.ImmersionBar;
 import com.trump.library_common.R;
@@ -14,29 +19,23 @@ import com.trump.library_common.utils.ToastUtil;
 
 import org.greenrobot.eventbus.EventBus;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
+import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
 
 /**
  * @author 王元_Trump
  * @time 2020/03/19 15:40
  * @desc
  */
-public abstract class BaseActivity<V extends IBaseView, P extends IBasePresenter<V>> extends AppCompatActivity {
+public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActivity {
 
-    private Unbinder mUnbinder;
+    private ViewBinding mBinding;
+
     /**
      * 当前类实例
      */
     protected BaseActivity mActivity;
     protected Context mContext;
-
-    /**
-     * Presenter
-     */
-    protected P mPresenter;
 
     /**
      * 沉浸式状态栏
@@ -47,13 +46,15 @@ public abstract class BaseActivity<V extends IBaseView, P extends IBasePresenter
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //防止屏幕休眠
-        //getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-
-        if (getLayoutId() != 0) {
-            setContentView(getLayoutId());
+        try {
+            ParameterizedType type = (ParameterizedType) getClass().getGenericSuperclass();
+            Class cls = (Class) type.getActualTypeArguments()[0];
+            Method inflate = cls.getDeclaredMethod("inflate", LayoutInflater.class);
+            mBinding = (VB) inflate.invoke(null, getLayoutInflater());
+            setContentView(mBinding.getRoot());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        mUnbinder = ButterKnife.bind(this);
 
         mContext = this;
         mActivity = this;
@@ -67,21 +68,18 @@ public abstract class BaseActivity<V extends IBaseView, P extends IBasePresenter
             setImmersionBar(getStatusBarColor());
         }
 
-        mPresenter = initPresenter();
-        if (mPresenter != null) {
-            mPresenter.setContext(this);
-            mPresenter.attachView((V) this);
-        }
-
         if (applyEventBus()) {
             EventBus.getDefault().register(this);
         }
 
         init(savedInstanceState);
         initViews(savedInstanceState);
-        initToolbar(savedInstanceState);
-        initListener();
         initData();
+        initListener();
+    }
+
+    public VB getBinding() {
+        return (VB) mBinding;
     }
 
     @Override
@@ -107,29 +105,10 @@ public abstract class BaseActivity<V extends IBaseView, P extends IBasePresenter
 
     @Override
     protected void onDestroy() {
-
-        if (mPresenter != null) {
-            mPresenter.detachView();
-        }
-
-//        if (applyImmersionBar() || applyFullScreen()) {
-//            if (immersionBar != null) immersionBar.destroy();
-//        }
-
         if (applyEventBus()) {
             EventBus.getDefault().unregister(this);
         }
-
-        if (mUnbinder != null) {
-            mUnbinder.unbind();
-        }
-
         super.onDestroy();
-    }
-
-    @Override
-    public void finish() {
-        super.finish();
     }
 
     /**
@@ -221,29 +200,9 @@ public abstract class BaseActivity<V extends IBaseView, P extends IBasePresenter
     }
 
     /**
-     * 布局layout id
-     *
-     * @return layout id
-     */
-    protected abstract int getLayoutId();
-
-    /**
-     * 初始化Presenter
-     *
-     * @return P
-     */
-    protected abstract P initPresenter();
-
-    /**
      * 初始化
      */
     protected void init(Bundle savedInstanceState) {
-    }
-
-    /**
-     * 初始化toolBar
-     */
-    protected void initToolbar(Bundle savedInstanceState) {
     }
 
     /**
@@ -288,5 +247,4 @@ public abstract class BaseActivity<V extends IBaseView, P extends IBasePresenter
     public void showToast(String message) {
         ToastUtil.show(mActivity, message);
     }
-
 }

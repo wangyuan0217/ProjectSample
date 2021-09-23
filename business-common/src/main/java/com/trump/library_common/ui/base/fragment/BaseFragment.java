@@ -6,47 +6,35 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.viewbinding.ViewBinding;
+
 import com.trump.library_common.ui.base.activity.BaseActivity;
 import com.trump.library_common.ui.base.dialog.LoadingDialog;
-import com.trump.library_common.ui.base.view.IBasePresenter;
-import com.trump.library_common.ui.base.view.IBaseView;
 
 import org.greenrobot.eventbus.EventBus;
 
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
+import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
 
 /**
  * @author 王元_Trump
  * @time 2020/03/19 15:39
  * @desc
  */
-public abstract class BaseFragment<V extends IBaseView, P extends IBasePresenter<V>> extends Fragment {
+public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
 
-    private Unbinder mUnbinder;
-    /**
-     * Presenter
-     */
-    private P presenter;
-
+    private ViewBinding mBinding;
     /**
      * 基类Activity
      */
-    private BaseActivity activity;
+    protected BaseActivity mActivity;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-
-        activity = (BaseActivity) context;
-
-        presenter = initPresenter();
-        if (presenter != null) {
-            presenter.setContext(activity);
-            presenter.attachView((V) this);
-        }
+        mActivity = (BaseActivity) context;
     }
 
     @Override
@@ -57,14 +45,20 @@ public abstract class BaseFragment<V extends IBaseView, P extends IBasePresenter
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(getLayoutId(), container, false);
+        try {
+            ParameterizedType type = (ParameterizedType) getClass().getGenericSuperclass();
+            Class cls = (Class) type.getActualTypeArguments()[0];
+            Method inflate = cls.getDeclaredMethod("inflate", LayoutInflater.class);
+            mBinding = (VB) inflate.invoke(null, getLayoutInflater());
+            return mBinding.getRoot();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
-//        if (view.getParent() != null) {
-//            ViewGroup parent = (ViewGroup) view.getParent();
-//            parent.removeView(view);
-//        }
-        mUnbinder = ButterKnife.bind(this, view);
-        return view;
+    public VB getBinding() {
+        return (VB) mBinding;
     }
 
     @Override
@@ -74,10 +68,9 @@ public abstract class BaseFragment<V extends IBaseView, P extends IBasePresenter
         handleImmersionBar();
 
         init(savedInstanceState);
-        initToolbar(savedInstanceState);
         initViews(view, savedInstanceState);
-        initListener();
         initData();
+        initListener();
 
         if (applyEventBus()) {
             EventBus.getDefault().register(this);
@@ -124,9 +117,6 @@ public abstract class BaseFragment<V extends IBaseView, P extends IBasePresenter
             EventBus.getDefault().unregister(this);
         }
 
-        if (mUnbinder != null) {
-            mUnbinder.unbind();
-        }
         super.onDestroyView();
     }
 
@@ -137,20 +127,8 @@ public abstract class BaseFragment<V extends IBaseView, P extends IBasePresenter
 
     @Override
     public void onDetach() {
-
-        if (presenter != null) {
-            presenter.detachView();
-        }
-
         super.onDetach();
     }
-
-    /**
-     * 初始化Presenter
-     *
-     * @return PP
-     */
-    protected abstract P initPresenter();
 
     /**
      * 布局layout id
@@ -178,11 +156,6 @@ public abstract class BaseFragment<V extends IBaseView, P extends IBasePresenter
     protected void init(Bundle savedInstanceState) {
     }
 
-    /**
-     * 初始化toobar
-     */
-    protected void initToolbar(Bundle savedInstanceState) {
-    }
 
     /**
      * 初始化数据
@@ -206,29 +179,11 @@ public abstract class BaseFragment<V extends IBaseView, P extends IBasePresenter
     }
 
     /**
-     * 获取Presenter
-     *
-     * @return
-     */
-    protected P getPresenter() {
-        return presenter;
-    }
-
-    /**
-     * 获取宿主Activity
-     *
-     * @return activity
-     */
-    protected BaseActivity getHoldingActivity() {
-        return activity;
-    }
-
-    /**
      * 显示进度条
      * notice：基类中实现IBaseView的回调
      */
     public void showProgress() {
-        LoadingDialog.show(getHoldingActivity());
+        LoadingDialog.show(mActivity);
     }
 
     /**
