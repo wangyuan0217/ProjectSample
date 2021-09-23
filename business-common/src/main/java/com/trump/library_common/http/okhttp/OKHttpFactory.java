@@ -7,8 +7,8 @@ import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 import com.socks.library.KLog;
-import com.trump.config.CommonConfig;
-import com.trump.config.HttpConfigConstant;
+import com.trump.library_common.config.CommonConfig;
+import com.trump.library_common.config.HttpConfigConstant;
 import com.trump.library_common.app.BaseApplication;
 
 import java.io.File;

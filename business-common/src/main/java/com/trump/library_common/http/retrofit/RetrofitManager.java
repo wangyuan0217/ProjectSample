@@ -1,6 +1,6 @@
 package com.trump.library_common.http.retrofit;
 
-import com.trump.config.BuildConfig;
+import com.trump.library_common.config.UrlConstant;
 import com.trump.library_common.http.okhttp.OKHttpFactory;
 
 import retrofit2.Retrofit;
@@ -17,7 +17,7 @@ public class RetrofitManager {
                 if (sRetrofit == null) {
                     sRetrofit = new Retrofit.Builder()
                             //baseUrl
-                            .baseUrl(BuildConfig.URL_API_HOST)
+                            .baseUrl(UrlConstant.API_HOST)
                             //设置OKHttpClient
                             .client(OKHttpFactory.INSTANCE.getOkHttpClient())
                             //fix Retrofit以Mutipart上传参数时，String参数会多一对双引号

@@ -1,7 +1,7 @@
 package com.trump.library_common.http.rxJava;
 
 
-import com.trump.config.HttpResponseCode;
+import com.trump.library_common.config.HttpResponseCode;
 import com.trump.library_common.http.response.BaseResponse;
 import com.trump.library_common.utils.ToastUtil;
 

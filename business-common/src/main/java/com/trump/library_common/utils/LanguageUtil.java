@@ -9,7 +9,7 @@ import android.os.LocaleList;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 
-import com.trump.config.LanguageConstant;
+import com.trump.library_common.config.LanguageConstant;
 
 import java.util.Locale;
 

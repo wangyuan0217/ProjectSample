@@ -1,4 +1,4 @@
-package com.trump.config;
+package com.trump.library_common.config;
 
 import java.util.ArrayList;
 import java.util.HashMap;

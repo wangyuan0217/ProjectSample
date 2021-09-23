@@ -4,7 +4,7 @@ import android.net.ParseException;
 
 import com.google.gson.JsonParseException;
 import com.socks.library.KLog;
-import com.trump.config.HttpResponseCode;
+import com.trump.library_common.config.HttpResponseCode;
 import com.trump.library_common.app.BaseApplication;
 import com.trump.library_common.ui.base.dialog.LoadingDialog;
 import com.trump.library_common.utils.NetworkUtil;

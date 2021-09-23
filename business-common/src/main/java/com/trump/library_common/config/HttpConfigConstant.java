@@ -1,6 +1,4 @@
-package com.trump.config;
-
-import java.io.File;
+package com.trump.library_common.config;
 
 /**
  * Description:HTTP配置常量

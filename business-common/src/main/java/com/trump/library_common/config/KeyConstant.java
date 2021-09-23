@@ -1,4 +1,7 @@
-package com.trump.config;
+package com.trump.library_common.config;
+
+
+import com.trump.library_common.BuildConfig;
 
 public class KeyConstant {
 

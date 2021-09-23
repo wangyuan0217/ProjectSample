@@ -7,7 +7,7 @@ import android.content.Intent;
 import com.socks.library.KLog;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.tencent.smtt.sdk.QbSdk;
-import com.trump.config.CommonConfig;
+import com.trump.library_common.config.CommonConfig;
 
 import io.reactivex.plugins.RxJavaPlugins;
 

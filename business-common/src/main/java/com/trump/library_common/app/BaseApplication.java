@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.socks.library.KLog;
-import com.trump.config.CommonConfig;
+import com.trump.library_common.config.CommonConfig;
 import com.trump.library_common.utils.AppManager;
 
 import androidx.annotation.NonNull;

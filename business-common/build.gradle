@@ -11,6 +11,11 @@ android {
 
         consumerProguardFiles 'consumer-rules.pro'
 
+        //BuildConfig
+        rootProject.ext.variable.each {
+            item -> buildConfigField "String", item.key, "\"" + item.value + "\""
+        }
+
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [AROUTER_MODULE_NAME: project.getName()]
@@ -25,6 +30,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
+            buildConfigField "String", "ar", "23123"
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -37,10 +43,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    //project dependencies
-    api project(':business-config')
-
 
     //support dependencies
     api rootProject.ext.library["appcompat"]

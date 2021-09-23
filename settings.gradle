@@ -1,5 +1,4 @@
 include ':app'
-include ':business-config'
 include ':business-common'
 include ':module-main'
 include ':module-mine'
