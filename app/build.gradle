@@ -86,7 +86,6 @@ ApkPublish {
 
 android {
     compileSdkVersion rootProject.ext.variable.VERSION_COMPILE
-    buildToolsVersion rootProject.ext.variable.VERSION_BUILD_TOOL
     defaultConfig {
         applicationId rootProject.ext.variable.PACKAGE_ID
         minSdkVersion rootProject.ext.variable.VERSION_MIN_SDK
@@ -105,8 +104,8 @@ android {
         }
     }
 
-    viewBinding {
-        enabled = true
+    buildFeatures{
+        viewBinding =true
     }
 
     sourceSets {

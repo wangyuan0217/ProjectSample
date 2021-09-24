@@ -2,7 +2,6 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion rootProject.ext.variable.VERSION_COMPILE
-    buildToolsVersion rootProject.ext.variable.VERSION_BUILD_TOOL
     defaultConfig {
         minSdkVersion rootProject.ext.variable.VERSION_MIN_SDK
         targetSdkVersion rootProject.ext.variable.VERSION_TARGET_SDK
@@ -18,8 +17,8 @@ android {
         }
     }
 
-    viewBinding {
-        enabled = true
+    buildFeatures{
+        viewBinding =true
     }
 
     //每个模块下的build.gradle文件

@@ -78,7 +78,6 @@ project.ext {
             //项目编译相关配置
             RELEASE_TYPE        : releaseType,
             VERSION_COMPILE     : 29,
-            VERSION_BUILD_TOOL  : "29.0.3",
             VERSION_MIN_SDK     : 21,
             VERSION_TARGET_SDK  : 29,
 

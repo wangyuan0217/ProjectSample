@@ -6,7 +6,6 @@ if (rootProject.ext.variable.isModulePackage) {
 
 android {
     compileSdkVersion rootProject.ext.variable.VERSION_COMPILE
-    buildToolsVersion rootProject.ext.variable.VERSION_BUILD_TOOL
     defaultConfig {
         if (rootProject.ext.variable.isModulePackage) {
             applicationId rootProject.ext.variable.ID_MINE
@@ -25,8 +24,8 @@ android {
         }
     }
 
-    viewBinding {
-        enabled = true
+    buildFeatures{
+        viewBinding =true
     }
 
     //每个模块下的build.gradle文件

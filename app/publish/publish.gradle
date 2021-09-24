@@ -792,7 +792,7 @@ afterEvaluate {
                     it.signConfig.keyPassword = asc.keyPassword
                 }
                 variant.outputs.all {
-                    def outPutPath = Util.getOutPutPath(variant.getPackageApplication().outputDirectory)
+                    def outPutPath = Util.getOutPutPath(variant.getPackageApplicationProvider().get().outputDirectory)
                     apk.apkBuildPath = "$outPutPath\\${outputFileName}"
                     apk.outputDirectory = outPutPath
                     apk.outputFileName = outputFileName
