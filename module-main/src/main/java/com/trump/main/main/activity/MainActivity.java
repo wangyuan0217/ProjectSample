@@ -1,4 +1,4 @@
-package com.trump.sample.main.activity;
+package com.trump.main.main.activity;
 
 import android.view.KeyEvent;
 
@@ -11,10 +11,10 @@ import com.trump.library_common.router.ActivityJumper;
 import com.trump.library_common.ui.adapter.MyFragmentAdapter;
 import com.trump.library_common.ui.base.activity.BaseActivityMVP;
 import com.trump.library_common.utils.AppManager;
-import com.trump.sample.R;
-import com.trump.sample.databinding.ActivityMainBinding;
-import com.trump.sample.main.contract.MainContract;
-import com.trump.sample.main.presenter.MainPresenter;
+import com.trump.main.R;
+import com.trump.main.databinding.ActivityMainBinding;
+import com.trump.main.main.contract.MainContract;
+import com.trump.main.main.presenter.MainPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +33,7 @@ public class MainActivity extends BaseActivityMVP<ActivityMainBinding, MainContr
         getBinding().navigation.setItemIconTintList(null); //使用源图标颜色
 
         ArrayList<Fragment> fragments = new ArrayList<>();
-        fragments.add(ActivityJumper.getFragmentMain());
+        fragments.add(ActivityJumper.getFragmentHome());
         fragments.add(ActivityJumper.getFragmentMine());
 
         MyFragmentAdapter adapter = new MyFragmentAdapter(getSupportFragmentManager(), mContext, fragments);
@@ -42,13 +42,13 @@ public class MainActivity extends BaseActivityMVP<ActivityMainBinding, MainContr
         getBinding().viewPager.setOffscreenPageLimit(fragments.size());
 
         getBinding().navigation.setOnNavigationItemSelectedListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    getBinding().viewPager.setCurrentItem(0);//首页
-                    return true;
-                case R.id.navigation_mine:
-                    getBinding().viewPager.setCurrentItem(1);//我的
-                    return true;
+            int itemId = item.getItemId();
+            if (itemId == R.id.navigation_home) {
+                getBinding().viewPager.setCurrentItem(0);//首页
+                return true;
+            } else if (itemId == R.id.navigation_mine) {
+                getBinding().viewPager.setCurrentItem(1);//我的
+                return true;
             }
             return false;
         });

@@ -19,11 +19,6 @@ import io.reactivex.disposables.Disposable;
 public class MineFragment extends BaseFragment<MineFragmentMineBinding> {
 
     @Override
-    protected int getLayoutId() {
-        return R.layout.mine_fragment_mine;
-    }
-
-    @Override
     protected void initListener() {
         Disposable disposable = RxView.clicks(getBinding().text)
                 .throttleFirst(1, TimeUnit.SECONDS)

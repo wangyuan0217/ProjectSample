@@ -5,6 +5,7 @@ import com.trump.library_common.BuildConfig;
 public class CommonConfig {
 
     public static String[] MODULE_APPIDS = {BuildConfig.ID_MAIN + ".MainApplication",
+            BuildConfig.ID_HOME + ".HomeApplication",
             BuildConfig.ID_MINE + ".MineApplication"
     };
 

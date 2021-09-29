@@ -1,8 +1,15 @@
-apply plugin: 'com.android.library'
+if (rootProject.ext.variable.isModulePackage) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
 
 android {
     compileSdkVersion rootProject.ext.variable.VERSION_COMPILE
     defaultConfig {
+        if (rootProject.ext.variable.isModulePackage) {
+            applicationId rootProject.ext.variable.ID_MAIN
+        }
         minSdkVersion rootProject.ext.variable.VERSION_MIN_SDK
         targetSdkVersion rootProject.ext.variable.VERSION_TARGET_SDK
         versionCode 1
@@ -17,14 +24,19 @@ android {
         }
     }
 
-    buildFeatures {
-        viewBinding = true
+    buildFeatures{
+        viewBinding =true
     }
 
     //每个模块下的build.gradle文件
     sourceSets {
         main {
             jniLibs.srcDirs = ['libs']
+            if (rootProject.ext.variable.isModulePackage) {
+                manifest.srcFile 'src/main/module/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+            }
         }
     }
 
@@ -39,13 +51,13 @@ dependencies {
 
     //project dependencies
     implementation project(':business-common')
-    if (!rootProject.ext.variable.isModulePackage) {
-        implementation project(':module-home')
-        implementation project(':module-mine')
-    }
     implementation project(':module-user')
+
 
     //apt
     annotationProcessor rootProject.ext.library["arouter-compiler"]
+
+
+    //etc dependencies
 
 }

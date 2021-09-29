@@ -131,13 +131,6 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
     }
 
     /**
-     * 布局layout id
-     *
-     * @return layout id
-     */
-    protected abstract int getLayoutId();
-
-    /**
      * 配置状态栏
      */
     protected void handleImmersionBar() {

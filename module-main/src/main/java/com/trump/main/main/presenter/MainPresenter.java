@@ -1,4 +1,4 @@
-package com.trump.sample.main.presenter;
+package com.trump.main.main.presenter;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -8,7 +8,7 @@ import com.trump.library_common.http.rxJava.RxThrowableConsumer;
 import com.trump.library_common.model.response.NewsType;
 import com.trump.library_common.rx.RxScheduler;
 import com.trump.library_common.ui.base.presenter.BasePresenter;
-import com.trump.sample.main.contract.MainContract;
+import com.trump.main.main.contract.MainContract;
 
 import java.util.List;
 

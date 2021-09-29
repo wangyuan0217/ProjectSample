@@ -1,10 +1,10 @@
-package com.trump.main;
+package com.trump.home;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.jakewharton.rxbinding2.view.RxView;
+import com.trump.home.databinding.HomeFragmentHomeBinding;
 import com.trump.library_common.router.ActivityJumper;
 import com.trump.library_common.ui.base.fragment.BaseFragment;
-import com.trump.main.databinding.MainFragmentMainBinding;
 
 import java.util.concurrent.TimeUnit;
 
@@ -15,13 +15,8 @@ import io.reactivex.disposables.Disposable;
  * @time 2020/03/26 16:42
  * @desc
  */
-@Route(path = "/main/fragment")
-public class MainFragment extends BaseFragment<MainFragmentMainBinding> {
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.main_fragment_main;
-    }
+@Route(path = "/home/fragment")
+public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding> {
 
     @Override
     protected void initListener() {

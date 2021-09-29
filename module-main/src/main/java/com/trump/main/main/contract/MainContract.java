@@ -1,4 +1,4 @@
-package com.trump.sample.main.contract;
+package com.trump.main.main.contract;
 
 import com.trump.library_common.model.response.NewsType;
 import com.trump.library_common.ui.base.view.IBasePresenter;

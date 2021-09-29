@@ -1,10 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.trump.library_common">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-    <application android:usesCleartextTraffic="true">
+    <application android:usesCleartextTraffic="true"
+        tools:targetApi="m">
         <!-- 适配全面屏 -->
         <meta-data
             android:name="android.max_aspect"
@@ -18,8 +20,6 @@
             android:name="notch.config"
             android:value="portrait|landscape" />
 
-        <!-- application子线程初始化 -->
-        <service android:name=".app.InitializeService" />
     </application>
 
 </manifest>

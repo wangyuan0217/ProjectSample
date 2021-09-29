@@ -1,6 +1,7 @@
 include ':app'
 include ':business-common'
 include ':module-main'
+include ':module-home'
 include ':module-mine'
 include ':module-user'
 rootProject.name = 'ProjectSample'

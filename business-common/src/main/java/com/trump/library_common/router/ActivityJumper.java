@@ -1,5 +1,7 @@
 package com.trump.library_common.router;
 
+import android.content.Intent;
+
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.trump.library_common.ui.base.fragment.BaseFragment;
 
@@ -11,24 +13,25 @@ import com.trump.library_common.ui.base.fragment.BaseFragment;
  */
 public class ActivityJumper {
 
-    public static BaseFragment getFragmentMain() {
-        return (BaseFragment) ARouter.getInstance().build("/main/fragment").navigation();
+    public static BaseFragment getFragmentHome() {
+        return (BaseFragment) ARouter.getInstance().build("/home/fragment").navigation();
     }
 
     public static BaseFragment getFragmentMine() {
         return (BaseFragment) ARouter.getInstance().build("/mine/fragment").navigation();
     }
 
-    //开屏页
-    public static void toSplash() {
-        ARouter.getInstance().build("/app/splash")
-                .navigation();
-    }
-
     //app主页
     public static void toMain() {
         ARouter.getInstance().build("/app/main")
+                .withFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 .navigation();
+    }
+
+    public static void toLogin() {
+//        ARouter.getInstance().build("/app/login")
+//                .withFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK)
+//                .navigation();
     }
 
     //个人信息

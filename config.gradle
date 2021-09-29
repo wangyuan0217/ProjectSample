@@ -70,8 +70,10 @@ project.ext {
     variable = [
             //组件化
             isModulePackage     : isModulePackage,
-            //模块包名
+            //外层Module
             ID_MAIN             : "com.trump.main",
+            //模块包名
+            ID_HOME             : "com.trump.home",
             ID_MINE             : "com.trump.mine",
 
 

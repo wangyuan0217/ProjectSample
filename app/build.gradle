@@ -153,13 +153,9 @@ dependencies {
 
     //project dependencies
     implementation project(':business-common')
-
     if (!rootProject.ext.variable.isModulePackage) {
         implementation project(':module-main')
-        implementation project(':module-mine')
     }
-    implementation project(':module-user')
-
 
     //apt
     annotationProcessor rootProject.ext.library["arouter-compiler"]
