@@ -23,7 +23,7 @@ public class ActivityJumper {
 
     //app主页
     public static void toMain() {
-        ARouter.getInstance().build("/app/main")
+        ARouter.getInstance().build("/main/main")
                 .withFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 .navigation();
     }

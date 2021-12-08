@@ -19,7 +19,7 @@ import com.trump.main.main.presenter.MainPresenter;
 import java.util.ArrayList;
 import java.util.List;
 
-@Route(path = "/app/main")
+@Route(path = "/main/main")
 public class MainActivity extends BaseActivityMVP<ActivityMainBinding, MainContract.View, MainContract.Presenter>
         implements MainContract.View {
 

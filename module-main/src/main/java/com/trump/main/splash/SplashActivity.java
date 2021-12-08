@@ -7,7 +7,7 @@ import com.trump.library_common.router.ActivityJumper;
 import com.trump.library_common.ui.base.activity.BaseActivity;
 import com.trump.main.databinding.ActivitySplashBinding;
 
-@Route(path = "/app/splash")
+@Route(path = "/main/splash")
 public class SplashActivity extends BaseActivity<ActivitySplashBinding> {
 
     @Override
