@@ -18,6 +18,9 @@ import org.greenrobot.eventbus.EventBus;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+
 /**
  * @author 王元_Trump
  * @time 2020/03/19 15:39
@@ -29,12 +32,13 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
     /**
      * 基类Activity
      */
-    protected BaseActivity mActivity;
+    protected BaseActivity mActivity, mContext;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         mActivity = (BaseActivity) context;
+        mContext = mActivity;
     }
 
     @Override
@@ -127,6 +131,7 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
 
     @Override
     public void onDetach() {
+        freeDisposable();
         super.onDetach();
     }
 
@@ -185,6 +190,24 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
      */
     public void hideProgress() {
         LoadingDialog.close();
+    }
+
+    private CompositeDisposable compositeDisposable;
+
+    public void addDisposable(Disposable disposable) {
+        if (disposable == null) return;
+
+        if (compositeDisposable == null) {
+            this.compositeDisposable = new CompositeDisposable();
+        }
+        compositeDisposable.add(disposable);
+    }
+
+    public void freeDisposable() {
+        if (compositeDisposable != null) {
+            compositeDisposable.clear();
+            compositeDisposable = null;
+        }
     }
 
 }

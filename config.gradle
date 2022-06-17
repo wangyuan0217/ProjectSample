@@ -79,9 +79,9 @@ project.ext {
 
             //项目编译相关配置
             RELEASE_TYPE        : releaseType,
-            VERSION_COMPILE     : 29,
+            VERSION_COMPILE     : 31,
             VERSION_MIN_SDK     : 21,
-            VERSION_TARGET_SDK  : 29,
+            VERSION_TARGET_SDK  : 31,
 
             //app 相关信息
             PACKAGE_VCODE       : versionCode,

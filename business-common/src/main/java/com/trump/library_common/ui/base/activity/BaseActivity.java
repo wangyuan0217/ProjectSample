@@ -11,8 +11,6 @@ import androidx.viewbinding.ViewBinding;
 import com.gyf.immersionbar.ImmersionBar;
 import com.trump.library_common.R;
 import com.trump.library_common.ui.base.dialog.LoadingDialog;
-import com.trump.library_common.ui.base.view.IBasePresenter;
-import com.trump.library_common.ui.base.view.IBaseView;
 import com.trump.library_common.utils.KeyBoardUtil;
 import com.trump.library_common.utils.LanguageUtil;
 import com.trump.library_common.utils.ToastUtil;
@@ -21,6 +19,9 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
+
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 
 /**
  * @author 王元_Trump
@@ -108,6 +109,7 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
         if (applyEventBus()) {
             EventBus.getDefault().unregister(this);
         }
+        freeDisposable();
         super.onDestroy();
     }
 
@@ -247,4 +249,24 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
     public void showToast(String message) {
         ToastUtil.show(mActivity, message);
     }
+
+
+    private CompositeDisposable compositeDisposable;
+
+    public void addDisposable(Disposable disposable) {
+        if (disposable == null) return;
+
+        if (compositeDisposable == null) {
+            this.compositeDisposable = new CompositeDisposable();
+        }
+        compositeDisposable.add(disposable);
+    }
+
+    public void freeDisposable() {
+        if (compositeDisposable != null) {
+            compositeDisposable.clear();
+            compositeDisposable = null;
+        }
+    }
+
 }
