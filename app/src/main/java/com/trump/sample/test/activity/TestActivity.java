@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.trump.library_common.ui.base.activity.BaseActivityMVP;
-import com.trump.sample.R;
 import com.trump.sample.databinding.ActivityTestBinding;
 import com.trump.sample.test.contract.TestContract;
 import com.trump.sample.test.presenter.TestPresenter;
@@ -25,6 +24,10 @@ public class TestActivity extends BaseActivityMVP<ActivityTestBinding, TestContr
 
     @Override
     protected void initData() {
+
+        int a = 10_000;
+
+
     }
 
 }

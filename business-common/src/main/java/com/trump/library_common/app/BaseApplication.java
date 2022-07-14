@@ -30,6 +30,12 @@ public class BaseApplication extends Application {
     }
 
     @Override
+    protected void attachBaseContext(Context base) {
+        //签名检验
+        super.attachBaseContext(base);
+    }
+
+    @Override
     public void onCreate() {
         super.onCreate();
 
@@ -42,7 +48,6 @@ public class BaseApplication extends Application {
 
         modulesApplicationInit();
     }
-
 
     private void publicApplicationInit() {
 
